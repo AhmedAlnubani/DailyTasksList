@@ -3,7 +3,7 @@
 namespace DailyTasksList.Application.Features.Taskes.Commands.DeletePost
 {
     #region Public Class
-    public class DeleteTaskCommand: IRequest
+    public class DeleteTaskCommand: IRequest<long>
     {
         #region Public Properties 
         public long TaskId { get; set; }

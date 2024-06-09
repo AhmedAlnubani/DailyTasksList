@@ -6,7 +6,7 @@ using MediatR;
 namespace DailyTasksList.Application.Features.Taskes.Commands.DeletePost
 {
     #region public class
-    public class DeleteTaskCommandHandler:IRequestHandler<DeleteTaskCommand>
+    public class DeleteTaskCommandHandler:IRequestHandler<DeleteTaskCommand,long>
     {
         #region Private Fields
 
@@ -26,12 +26,12 @@ namespace DailyTasksList.Application.Features.Taskes.Commands.DeletePost
         #endregion public Constructors
 
         #region public Method
-        public async Task<Unit> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
         {
 
             DailyTaskes task= await _taskRepository.GetByIdAsync(request.TaskId); 
             await _taskRepository.DeleteAsync(task);
-            return Unit.Value;
+            return task.Id;
          }
 #endregion public Method
 

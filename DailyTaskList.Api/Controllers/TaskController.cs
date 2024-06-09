@@ -61,11 +61,11 @@ namespace DailyTasksList.Api.Controllers
         }
 
         [HttpDelete("{id}", Name = "DeleteTask")]
-        public async Task<ActionResult> Delete(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             var deleteTaskCommand = new DeleteTaskCommand() { TaskId = id };
             await _mediator.Send(deleteTaskCommand);
-            return NoContent();
+            return Ok(new {deleteTaskCommand.TaskId});
         }
 
         #endregion Public EndPoint
